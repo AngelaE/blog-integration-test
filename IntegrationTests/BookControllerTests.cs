@@ -1,18 +1,21 @@
 using FluentAssertions;
+using IntegrationTests;
 using IntegrationTests.Clients;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace BookApi.IntegrationTests
 {
-    public class BookControllerTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class BookControllerTests : IClassFixture<DefaultTestWebApplicationFactory<Startup>>
     {
-        private readonly WebApplicationFactory<Startup> _factory;
+        private readonly DefaultTestWebApplicationFactory<Startup> _factory;
 
-        public BookControllerTests(WebApplicationFactory<Startup> factory)
+        public BookControllerTests(DefaultTestWebApplicationFactory<Startup> factory, ITestOutputHelper outputHelper)
         {
             _factory = factory;
+            _factory.TestOutputHelper = outputHelper;
         }
 
         [Fact]
@@ -28,5 +31,9 @@ namespace BookApi.IntegrationTests
             books.Should().NotBeNull();
             books.Count.Should().Be(0);
         }
+
+
+  
+
     }
 }
