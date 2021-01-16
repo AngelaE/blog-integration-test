@@ -5,19 +5,14 @@
   "main": "index.js",
   "scripts": {
     "generate-book-client": "autorest ./IntegrationTests/BookApiClient/readme.md",
-    "start": "dotnet run --project BookApi",
-    "start-watch": "cd bookapi && dotnet watch run"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AngelaE/openapi-sample.git"
+    "start-api": "dotnet run --project BookApi",
+    "test": "dotnet test"
   },
   "author": "Angela Evans",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AngelaE/openapi-sample/issues"
   },
-  "homepage": "https://github.com/AngelaE/openapi-sample#readme",
   "devDependencies": {
     "autorest": "^3.0.6322"
   }

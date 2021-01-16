@@ -23,9 +23,9 @@ namespace IntegrationTests.Clients
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            public static IList<Book> Get(this IBooks operations)
+            public static IList<Book> GetAll(this IBooks operations)
             {
-                return operations.GetAsync().GetAwaiter().GetResult();
+                return operations.GetAllAsync().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -37,9 +37,61 @@ namespace IntegrationTests.Clients
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<Book>> GetAsync(this IBooks operations, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<Book>> GetAllAsync(this IBooks operations, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetAllWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            public static Book StoreBook(this IBooks operations, Book body = default(Book))
+            {
+                return operations.StoreBookAsync(body).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<Book> StoreBookAsync(this IBooks operations, Book body = default(Book), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.StoreBookWithHttpMessagesAsync(body, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='bookId'>
+            /// </param>
+            public static Book Get(this IBooks operations, int bookId)
+            {
+                return operations.GetAsync(bookId).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='bookId'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<Book> GetAsync(this IBooks operations, int bookId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetWithHttpMessagesAsync(bookId, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

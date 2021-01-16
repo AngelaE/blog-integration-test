@@ -43,6 +43,11 @@ namespace IntegrationTests.Clients
         public virtual IBooks Books { get; private set; }
 
         /// <summary>
+        /// Gets the IService.
+        /// </summary>
+        public virtual IService Service { get; private set; }
+
+        /// <summary>
         /// Initializes a new instance of the BookApiClient class.
         /// </summary>
         /// <param name='httpClient'>
@@ -136,6 +141,7 @@ namespace IntegrationTests.Clients
         {
             Authors = new Authors(this);
             Books = new Books(this);
+            Service = new Service(this);
             BaseUri = new System.Uri("http://localhost");
             SerializationSettings = new JsonSerializerSettings
             {

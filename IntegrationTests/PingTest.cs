@@ -17,7 +17,6 @@ namespace BookApi.IntegrationTests
         public async Task Ping_returns_success()
         {
             // this test proves that the service is up and running
-
             var client = _factory.CreateClient();
 
             // Act

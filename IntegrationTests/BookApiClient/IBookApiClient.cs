@@ -39,5 +39,10 @@ namespace IntegrationTests.Clients
         /// </summary>
         IBooks Books { get; }
 
+        /// <summary>
+        /// Gets the IService.
+        /// </summary>
+        IService Service { get; }
+
     }
 }
