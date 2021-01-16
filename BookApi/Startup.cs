@@ -1,4 +1,5 @@
 using BookApi.OpenApi;
+using BookApi.Store;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -33,7 +34,9 @@ namespace BookApi
                 // For custom enums which user defined values it is possible to generate enums as integer with descriptions 
                 // remove this line and check
                 // https://stackoverflow.com/questions/60222469/swagger-c-sharp-enum-generation-underlying-int-values-do-not-match-the-
-                .AddJsonOptions(o => { o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
+                .AddJsonOptions(o => { o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); })
+                .Services.AddSingleton<IBookStore, InMemoryBookStore>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookApi", Version = "v1" });
