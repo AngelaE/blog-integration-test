@@ -24,7 +24,7 @@ namespace IntegrationTests.Clients.Models
         /// </summary>
         /// <param name="type">Possible values include: 'Hardcover',
         /// 'Paperback', 'eBook'</param>
-        public Book(int id, string title, string author, string type, string summary = default(string))
+        public Book(int id, string title, string author, Type type, string summary = default(string))
         {
             Id = id;
             Title = title;
@@ -64,7 +64,7 @@ namespace IntegrationTests.Clients.Models
         /// 'eBook'
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
+        public Type Type { get; set; }
 
     }
 }

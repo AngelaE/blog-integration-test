@@ -11,6 +11,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
+using Type = IntegrationTests.Clients.Models.Type;
 
 namespace BookApi.IntegrationTests
 {
@@ -62,7 +63,7 @@ namespace BookApi.IntegrationTests
             var bookApiClient = new BookApiClient(client, false);
 
             // Act
-            var book = await bookApiClient.Books.StoreBookAsync(new Book { Id = 3, Title = "test title", Author = "author", Type = "Hardcover"});
+            var book = await bookApiClient.Books.StoreBookAsync(new Book { Id = 3, Title = "test title", Author = "author", Type = Type.EBook});
 
             // Assert
             book.Should().NotBeNull();
@@ -72,7 +73,7 @@ namespace BookApi.IntegrationTests
         public async Task Create_book_throws_BadRequest_for_string_id()
         {
             var client = _factory.CreateClient();
-            var bookString = JsonSerializer.Serialize(new Book { Id = 3, Title = "test title", Author = "author", Type = "Hardcover" });
+            var bookString = JsonSerializer.Serialize(new Book { Id = 3, Title = "test title", Author = "author", Type = Type.EBook });
             bookString = bookString.Replace("3", "invalid");
 
             var content = new StringContent(bookString,

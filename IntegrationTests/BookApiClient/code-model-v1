@@ -279,6 +279,10 @@
        "originalLocations": [
         "http://localhost:5000/swagger/v1/swagger.json#/components/schemas/Type"
        ]
+      },
+      "x-ms-enum": {
+       "name": "Type",
+       "modelAsString": true
       }
      },
      "isRequired": true,
@@ -325,7 +329,7 @@
       "name": {
        "$id": "51",
        "fixed": false,
-       "raw": ""
+       "raw": "Type"
       },
       "deprecated": false
      }
@@ -353,6 +357,11 @@
     }
    },
    "deprecated": false
+  }
+ ],
+ "enumTypes": [
+  {
+   "$ref": "45"
   }
  ],
  "name": "BookApi",
