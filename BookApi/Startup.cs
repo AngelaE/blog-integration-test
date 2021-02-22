@@ -49,6 +49,8 @@ namespace BookApi
                 // remove additional properties, see https://github.com/Brixel/SpaceAPI/pull/19
                 c.DocumentFilter<AdditionalPropertiesDocumentFilter>();
 
+                c.SchemaFilter<AutoRestSchemaFilter>();
+
                 c.CustomOperationIds(apiDesc =>
                 {
                     // use ControllerName_Method as operation id. That will group the methods in the generated client
