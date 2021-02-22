@@ -76,7 +76,7 @@ namespace IntegrationTests.Clients
             /// </param>
             /// <param name='bookId'>
             /// </param>
-            public static Book Get(this IBooks operations, int bookId)
+            public static BookWithStats Get(this IBooks operations, int bookId)
             {
                 return operations.GetAsync(bookId).GetAwaiter().GetResult();
             }
@@ -89,7 +89,7 @@ namespace IntegrationTests.Clients
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<Book> GetAsync(this IBooks operations, int bookId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<BookWithStats> GetAsync(this IBooks operations, int bookId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetWithHttpMessagesAsync(bookId, null, cancellationToken).ConfigureAwait(false))
                 {
