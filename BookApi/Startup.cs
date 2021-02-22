@@ -1,5 +1,7 @@
+using BookApi.Configuration;
 using BookApi.OpenApi;
 using BookApi.Store;
+using BookStats.Autorest;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -12,6 +14,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -36,6 +39,17 @@ namespace BookApi
                 // https://stackoverflow.com/questions/60222469/swagger-c-sharp-enum-generation-underlying-int-values-do-not-match-the-
                 .AddJsonOptions(o => { o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); })
                 .Services.AddSingleton<IBookStore, InMemoryBookStore>();
+            
+            services.AddHttpClient<IBookStatsClient, BookStatsClient>();
+            services.AddScoped<IServiceDiscovery, ServiceDiscovery>();
+            services.AddScoped<IBookStatsClient, BookStatsClient>(c =>
+           {
+               var httpClient = c.GetRequiredService<IHttpClientFactory>()
+                   .CreateClient(nameof(IBookStatsClient));
+               var baseUri = c.GetRequiredService<IServiceDiscovery>().GetServiceUri("bookstats");
+               return new BookStatsClient(baseUri, httpClient);
+           });
+            
 
             services.AddSwaggerGen(c =>
             {
