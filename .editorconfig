@@ -11,6 +11,7 @@ indent_style = space
 indent_size = 2
 
 #Formatting - new line options
+end_of_line = crlf
 
 #require members of object initializers to be on the same line
 csharp_new_line_before_members_in_object_initializers = false

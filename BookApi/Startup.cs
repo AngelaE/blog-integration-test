@@ -41,33 +41,33 @@ namespace BookApi
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookApi", Version = "v1" });
 
-              // Set the comments path for the Swagger JSON and UI.
-              var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        // Set the comments path for the Swagger JSON and UI.
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
         var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
         c.IncludeXmlComments(xmlPath);
 
-              // remove additional properties, see https://github.com/Brixel/SpaceAPI/pull/19
-              c.DocumentFilter<AdditionalPropertiesDocumentFilter>();
+        // remove additional properties, see https://github.com/Brixel/SpaceAPI/pull/19
+        c.DocumentFilter<AdditionalPropertiesDocumentFilter>();
 
         c.SchemaFilter<AutoRestSchemaFilter>();
 
         c.CustomOperationIds(apiDesc =>
               {
-                  // use ControllerName_Method as operation id. That will group the methods in the generated client
-                  if (apiDesc.ActionDescriptor is ControllerActionDescriptor desc)
-            {
-              var operationAttribute = (desc.EndpointMetadata
-                    .FirstOrDefault(a => a is SwaggerOperationAttribute) as SwaggerOperationAttribute);
-              return $"{desc.ControllerName}_{operationAttribute?.OperationId ?? desc.ActionName}";
-            }
+                // use ControllerName_Method as operation id. That will group the methods in the generated client
+                if (apiDesc.ActionDescriptor is ControllerActionDescriptor desc)
+                {
+                  var operationAttribute = (desc.EndpointMetadata
+                        .FirstOrDefault(a => a is SwaggerOperationAttribute) as SwaggerOperationAttribute);
+                  return $"{desc.ControllerName}_{operationAttribute?.OperationId ?? desc.ActionName}";
+                }
 
-                  // otherwise get the method name from the methodInfo
-                  var controller = apiDesc.ActionDescriptor.RouteValues["controller"];
-            apiDesc.TryGetMethodInfo(out MethodInfo methodInfo);
-            string methodName = methodInfo?.Name ?? null;
+                // otherwise get the method name from the methodInfo
+                var controller = apiDesc.ActionDescriptor.RouteValues["controller"];
+                apiDesc.TryGetMethodInfo(out MethodInfo methodInfo);
+                string methodName = methodInfo?.Name ?? null;
 
-            return $"{controller}_{methodName}";
-          });
+                return $"{controller}_{methodName}";
+              });
       });
     }
 
