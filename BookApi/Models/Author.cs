@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace BookApi.Models
+﻿namespace BookApi.Models
 {
-    public class Author
-    {
-        public int Id { get; init; }
-        public string Name { get; init; }
-    }
+  public class Author
+  {
+    public int Id { get; init; }
+    public string Name { get; init; }
+  }
 }

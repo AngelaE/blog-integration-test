@@ -6,18 +6,18 @@ using Xunit.Abstractions;
 
 namespace IntegrationTests
 {
-    public class DefaultTestWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup>
+  public class DefaultTestWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup>
         where TStartup : class
-    {
-        public ITestOutputHelper TestOutputHelper { get; set; }
+  {
+    public ITestOutputHelper TestOutputHelper { get; set; }
 
-        protected override void ConfigureWebHost(IWebHostBuilder builder)
-        {
-            // Register the xUnit logger
-            builder.ConfigureLogging(loggingBuilder =>
-            {
-                loggingBuilder.AddProvider(new XUnitLoggerProvider(TestOutputHelper));
-            });
-        }
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+      // Register the xUnit logger
+      builder.ConfigureLogging(loggingBuilder =>
+      {
+        loggingBuilder.AddProvider(new XUnitLoggerProvider(TestOutputHelper));
+      });
     }
+  }
 }

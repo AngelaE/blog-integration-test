@@ -2,15 +2,15 @@
 
 namespace BookApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ServiceController : ControllerBase
+  [Route("api/[controller]")]
+  [ApiController]
+  public class ServiceController : ControllerBase
+  {
+    [HttpGet]
+    [Route("ping")]
+    public ActionResult Ping()
     {
-        [HttpGet]
-        [Route("ping")]
-        public ActionResult Ping()
-        {
-            return Ok("Service is up");
-        }
+      return Ok("Service is up");
     }
+  }
 }

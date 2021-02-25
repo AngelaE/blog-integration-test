@@ -4,23 +4,22 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace BookApi.OpenApi
 {
-    // Source: Swashbuckle documentation
-    public class AutoRestSchemaFilter : ISchemaFilter
+  // Source: Swashbuckle documentation
+  public class AutoRestSchemaFilter : ISchemaFilter
+  {
+    public void Apply(OpenApiSchema schema, SchemaFilterContext context)
     {
-        public void Apply(OpenApiSchema schema, SchemaFilterContext context)
-        {
-            var type = context.Type;
-            if (type.IsEnum)
-            {
-                schema.Extensions.Add(
-                    "x-ms-enum",
-                    new OpenApiObject
-                    {
-                        ["name"] = new OpenApiString(type.Name),
-                        ["modelAsString"] = new OpenApiBoolean(true)
-                    }
-                );
-            };
-        }
+      var type = context.Type;
+      if (type.IsEnum)
+      {
+        schema.Extensions.Add(
+            "x-ms-enum",
+            new OpenApiObject {
+              ["name"] = new OpenApiString(type.Name),
+              ["modelAsString"] = new OpenApiBoolean(true)
+            }
+        );
+      };
     }
+  }
 }
