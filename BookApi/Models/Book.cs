@@ -8,6 +8,7 @@ namespace BookApi.Models
     Paperback,
     eBook
   }
+
   public class Book
   {
     [Required]
@@ -22,5 +23,23 @@ namespace BookApi.Models
 
     [Required]
     public Type Type { get; init; }
+  }
+
+  public class BookWithStats
+  {
+    [Required]
+    public int Id { get; init; }
+    [Required]
+    public string Title { get; init; }
+
+    [Required]
+    public string Author { get; init; }
+
+    public string Summary { get; init; }
+
+    [Required]
+    public Type Type { get; init; }
+
+    public int? CopiesSold { get; init; }
   }
 }
