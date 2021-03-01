@@ -29,7 +29,7 @@ namespace IntegrationTests
       .RespondWith(
           Response.Create()
               .WithStatusCode(500)
-              .WithDelay(TimeSpan.FromSeconds(200)));
+              .WithDelay(TimeSpan.FromSeconds(3)));
 
       var client = new HttpClient();
       var port = server.Ports[0];
