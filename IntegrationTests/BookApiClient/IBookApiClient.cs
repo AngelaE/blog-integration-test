@@ -30,11 +30,6 @@ namespace IntegrationTests.Clients
 
 
         /// <summary>
-        /// Gets the IAuthors.
-        /// </summary>
-        IAuthors Authors { get; }
-
-        /// <summary>
         /// Gets the IBooks.
         /// </summary>
         IBooks Books { get; }

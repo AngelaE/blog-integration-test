@@ -33,11 +33,6 @@ namespace IntegrationTests.Clients
         public JsonSerializerSettings DeserializationSettings { get; private set; }
 
         /// <summary>
-        /// Gets the IAuthors.
-        /// </summary>
-        public virtual IAuthors Authors { get; private set; }
-
-        /// <summary>
         /// Gets the IBooks.
         /// </summary>
         public virtual IBooks Books { get; private set; }
@@ -139,7 +134,6 @@ namespace IntegrationTests.Clients
         /// </summary>
         private void Initialize()
         {
-            Authors = new Authors(this);
             Books = new Books(this);
             Service = new Service(this);
             BaseUri = new System.Uri("http://localhost");

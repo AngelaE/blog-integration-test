@@ -309,7 +309,7 @@ namespace IntegrationTests.Clients
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<Book>> GetWithHttpMessagesAsync(int bookId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<BookWithStats>> GetWithHttpMessagesAsync(int bookId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -385,7 +385,7 @@ namespace IntegrationTests.Clients
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<Book>();
+            var _result = new HttpOperationResponse<BookWithStats>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -394,7 +394,7 @@ namespace IntegrationTests.Clients
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = Microsoft.Rest.Serialization.SafeJsonConvert.DeserializeObject<Book>(_responseContent, Client.DeserializationSettings);
+                    _result.Body = Microsoft.Rest.Serialization.SafeJsonConvert.DeserializeObject<BookWithStats>(_responseContent, Client.DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
