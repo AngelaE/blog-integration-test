@@ -17,33 +17,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build -c Release --no-restore
-    - name: Publish All
-      run: dotnet publish -c Release -o ./artifacts/all
-    - uses: actions/upload-artifact@v2
-      with:
-        name: all-artifacts
-        path: ./artifacts/all
-    - name: Publish Api
-      run: dotnet publish ./BookApi -c Release -o ./artifacts/book-api
-    - uses: actions/upload-artifact@v2
-      with:
-        name: book-api-artifacts
-        path: ./artifacts/book-api
-    - name: script
-      run: |
-        ls
-      
-      
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/download-artifact@v2
-      with:
-        name: all-artifacts
-        path: .
-    - name: script
-      run: ls
+      run: dotnet build --no-restore
     - name: Test
       run: dotnet test --verbosity normal
