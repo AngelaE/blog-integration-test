@@ -7,7 +7,10 @@ namespace BookApi.Store
 {
   public class InMemoryBookStore : IBookStore
   {
-    private List<Book> _books = new();
+    private List<Book> _books = new() { 
+      new Book { Id = 1, Author = "Douglas Adams", Title = "Hitch Hikers Guide to the Galaxy", Type = Type.eBook},
+      new Book { Id = 2, Author = "J.K. Rowling", Title = "Harry Potter", Type = Type.Hardcover},
+    };
 
     public Task AddBook(Book book)
     {
